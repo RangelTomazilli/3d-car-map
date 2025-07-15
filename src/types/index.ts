@@ -26,11 +26,24 @@ export interface Vehicle {
   model?: string;
   year?: number;
 }
+export interface AnimationState {
+  isPlaying: boolean;
+  isPaused: boolean;
+  currentPointIndex: number;
+  interpolationProgress: number; // 0-1 progresso entre pontos atual e próximo
+  currentCourse: Course | null;
+}
 
 export interface MapContainerProps {
   courses: Course[];
   selectedCourse: Course | null;
   currentPoint: GPSPoint | null;
-  vehicle: Vehicle;
 }
 
+export interface ControlPanelProps {
+  animationState: AnimationState;
+  onPlay: () => void;
+  onPause: () => void;
+  onStop: () => void;
+  onSeek: (pointIndex: number) => void;
+}

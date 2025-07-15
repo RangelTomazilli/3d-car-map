@@ -18,3 +18,107 @@
   display: flex;
   flex-direction: column;
 }
+
+// Card mixins
+@mixin card {
+  background-color: $bg-primary;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+  padding: $spacing-lg;
+}
+
+@mixin card-hover {
+  @include card;
+  transition: box-shadow $transition-base;
+  
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Panel mixins
+@mixin panel {
+  background-color: $bg-primary;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+}
+
+// Typography mixins
+@mixin heading($size: 'base') {
+  font-family: $font-family-sans;
+  font-weight: $font-weight-semibold;
+  line-height: 1.2;
+  margin: 0;
+  
+  @if $size == 'xs' {
+    font-size: $font-size-sm;
+  } @else if $size == 'sm' {
+    font-size: $font-size-base;
+  } @else if $size == 'base' {
+    font-size: $font-size-lg;
+  } @else if $size == 'lg' {
+    font-size: $font-size-xl;
+  } @else if $size == 'xl' {
+    font-size: $font-size-2xl;
+  } @else if $size == '2xl' {
+    font-size: $font-size-3xl;
+  }
+}
+
+@mixin text($variant: 'base') {
+  font-family: $font-family-sans;
+  margin: 0;
+  
+  @if $variant == 'xs' {
+    font-size: $font-size-xs;
+    color: $text-muted;
+  } @else if $variant == 'sm' {
+    font-size: $font-size-sm;
+    color: $text-secondary;
+  } @else if $variant == 'base' {
+    font-size: $font-size-base;
+    color: $text-primary;
+  } @else if $variant == 'lg' {
+    font-size: $font-size-lg;
+    color: $text-primary;
+  }
+}
+
+// Animation mixins
+@mixin fade-in($duration: $transition-base) {
+  animation: fadeIn $duration ease-in-out;
+}
+
+@mixin slide-in-up($duration: $transition-base) {
+  animation: slideInUp $duration ease-out;
+}
+
+@mixin pulse($duration: 2s) {
+  animation: pulse $duration infinite;
+}
+
+// Responsive mixins
+@mixin mobile {
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$breakpoint-sm}) and (max-width: #{$breakpoint-lg - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-lg}) {
+    @content;
+  }
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

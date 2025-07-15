@@ -84,6 +84,11 @@ $breakpoint-lg: 1024px;
 $breakpoint-xl: 1280px;
 $breakpoint-2xl: 1536px;
 
+// Animation
+$transition-fast: 150ms ease-in-out;
+$transition-base: 250ms ease-in-out;
+$transition-slow: 350ms ease-in-out;
+
 // Map specific
 $map-height: calc(100vh - #{$header-height});
 $control-panel-height: 120px;
