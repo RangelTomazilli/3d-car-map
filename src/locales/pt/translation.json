@@ -1,0 +1,42 @@
+{
+  "app": {
+    "title": "Rastreamento Veicular 3D",
+    "description": "Sistema de monitoramento GPS em tempo real"
+  },
+  "vehicle": {
+    "plate": "Placa",
+    "speed": "Velocidade",
+    "direction": "Direção",
+    "position": "Posição",
+    "status": "Status"
+  },
+  "controls": {
+    "play": "Reproduzir",
+    "pause": "Pausar",
+    "stop": "Parar",
+    "speed": "Velocidade",
+    "course": "Trajeto",
+    "selectCourse": "Selecione um trajeto"
+  },
+  "courses": {
+    "course1": "Trajeto 1 - Centro de Guarujá",
+    "course2": "Trajeto 2 - Praia de Pitangueiras",
+    "course3": "Trajeto 3 - Santos - Zona Portuária",
+    "course4": "Trajeto 4 - Via Expressa",
+    "course5": "Trajeto 5 - Circuito Completo"
+  },
+  "info": {
+    "totalPoints": "Total de Pontos",
+    "currentPoint": "Ponto Atual",
+    "duration": "Duração",
+    "distance": "Distância",
+    "averageSpeed": "Velocidade Média"
+  },
+  "units": {
+    "kmh": "km/h",
+    "km": "km",
+    "degrees": "°",
+    "minutes": "min",
+    "seconds": "s"
+  }
+}

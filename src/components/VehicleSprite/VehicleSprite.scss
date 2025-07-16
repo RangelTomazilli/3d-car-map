@@ -1,0 +1,70 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.vehicle-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.vehicle-sprite {
+  position: relative;
+  transform-origin: center center;
+  transition: transform $transition-fast;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  
+  &--moving {
+    animation: vehicleMove 0.5s ease-in-out;
+  }
+  
+  svg {
+    width: 100%;
+    height: 100%;
+    transition: all $transition-fast;
+  }
+  
+  &__pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  &:hover {
+    svg {
+      transform: scale(1.1);
+    }
+  }
+}
+
+@keyframes vehicleMove {
+  0% {
+    transform: scale(1) rotate(var(--rotation, 0deg));
+  }
+  50% {
+    transform: scale(1.15) rotate(var(--rotation, 0deg));
+  }
+  100% {
+    transform: scale(1) rotate(var(--rotation, 0deg));
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+  }
+}

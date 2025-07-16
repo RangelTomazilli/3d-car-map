@@ -7,6 +7,10 @@ $warning-color: #f59e0b;
 $error-color: #ef4444;
 $info-color: #3b82f6;
 
+// Vehicle colors
+$vehicle-primary: #FFEB3B;
+$vehicle-secondary: #2196F3;
+
 // Background colors
 $bg-primary: #ffffff;
 $bg-secondary: #f8fafc;
@@ -62,7 +66,6 @@ $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
-
 // Layout
 $header-height: 4rem;       // 64px
 $sidebar-width: 20rem;      // 320px
@@ -93,6 +96,3 @@ $transition-slow: 350ms ease-in-out;
 $map-height: calc(100vh - #{$header-height});
 $control-panel-height: 120px;
 $vehicle-sprite-size: 24px;
-
-// Animation
-$transition-fast: 150ms ease-in-out;

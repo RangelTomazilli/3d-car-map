@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import type { ControlPanelProps } from '../../types';
+import type { ControlPanelProps, PlaybackSpeed } from '../../types';
 import './ControlPanel.scss';
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
@@ -8,9 +8,12 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   onPlay,
   onPause,
   onStop,
+  onSpeedChange,
   onSeek,
 }) => {
   const { t } = useTranslation();
+
+  const playbackSpeeds: PlaybackSpeed[] = [0.5, 1, 2, 4, 8];
 
   const handlePlayPause = () => {
     if (animationState.isPlaying) {
@@ -89,6 +92,19 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           <label className="control-panel__speed-label">
             {t('controls.speed')}:
           </label>
+          <div className="control-panel__speed-buttons">
+            {playbackSpeeds.map(speed => (
+              <button
+                key={speed}
+                className={`control-panel__speed-button ${
+                  animationState.playbackSpeed === speed ? 'control-panel__speed-button--active' : ''
+                }`}
+                onClick={() => onSpeedChange(speed)}
+              >
+                {speed}x
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="control-panel__status">

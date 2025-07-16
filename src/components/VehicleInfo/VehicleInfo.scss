@@ -1,0 +1,351 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.vehicle-info {
+  @include panel;
+  position: fixed;
+  top: calc(#{$header-height} + #{$spacing-lg});
+  right: $spacing-lg;
+  width: $panel-width;
+  max-height: calc(100vh - #{$header-height} - #{$control-panel-height} - #{$spacing-xl});
+  padding: $spacing-lg;
+  background: $bg-primary;
+  overflow-y: auto;
+  z-index: 1000;
+  @include slide-in-up;
+  animation-delay: 0.1s;
+  
+  &__header {
+    @include flex-between;
+    align-items: flex-start;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $border-light;
+  }
+  
+  &__vehicle {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+  
+  &__vehicle-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-lg;
+    @include flex-center;
+    font-size: 20px;
+    color: $text-inverse;
+    box-shadow: $shadow-sm;
+  }
+  
+  &__vehicle-details {
+    flex: 1;
+  }
+  
+  &__vehicle-plate {
+    @include heading('base');
+    color: $text-primary;
+    font-family: $font-family-mono;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-xs;
+  }
+  
+  &__vehicle-model {
+    @include text('sm');
+    color: $text-secondary;
+    margin: 0;
+  }
+  
+  &__language-toggle {
+    @include button-secondary;
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-xs;
+    border-radius: $radius-md;
+    transition: all $transition-fast;
+    
+    &:hover {
+      background-color: $primary-color;
+      color: $text-inverse;
+      border-color: $primary-color;
+      transform: scale(1.05);
+    }
+  }
+  
+  &__status {
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__status-indicator {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+  }
+  
+  &__status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    @include pulse;
+  }
+  
+  &__status-text {
+    @include text('sm');
+    color: $text-primary;
+    font-weight: $font-weight-medium;
+  }
+  
+  &__progress {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+  
+  &__progress-text {
+    @include text('xs');
+    color: $text-secondary;
+    font-family: $font-family-mono;
+    min-width: 60px;
+  }
+  
+  &__progress-bar {
+    flex: 1;
+    height: 6px;
+    background: $bg-secondary;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  &__progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, $primary-color, $accent-color);
+    border-radius: 3px;
+    transition: width $transition-base;
+  }
+  
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+  
+  &__section {
+    padding: $spacing-md;
+    background: $bg-secondary;
+    border-radius: $radius-lg;
+    border-left: 4px solid $primary-color;
+  }
+  
+  &__section-title {
+    @include heading('sm');
+    color: $text-primary;
+    margin-bottom: $spacing-md;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+  
+  &__field {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__field-icon {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+    opacity: 0.7;
+  }
+  
+  &__field-label {
+    @include text('xs');
+    color: $text-muted;
+    font-weight: $font-weight-medium;
+    min-width: 60px;
+  }
+  
+  &__field-value {
+    @include text('sm');
+    color: $text-primary;
+    font-family: $font-family-mono;
+    flex: 1;
+    word-break: break-all;
+    
+    &--address {
+      font-family: $font-family-sans;
+      font-size: $font-size-xs;
+      line-height: 1.4;
+    }
+    
+    &--timestamp {
+      font-family: $font-family-mono;
+      font-size: $font-size-xs;
+    }
+  }
+  
+  &__empty {
+    @include flex-center;
+    @include flex-column;
+    gap: $spacing-md;
+    padding: $spacing-xl;
+    text-align: center;
+    color: $text-muted;
+  }
+  
+  &__empty-icon {
+    font-size: 48px;
+    opacity: 0.5;
+  }
+  
+  &__empty-text {
+    @include text('sm');
+    color: $text-secondary;
+    max-width: 200px;
+    line-height: 1.5;
+  }
+}
+
+// Custom scrollbar
+.vehicle-info {
+  scrollbar-width: thin;
+  scrollbar-color: $border-medium transparent;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $border-medium;
+    border-radius: 3px;
+    
+    &:hover {
+      background: $border-dark;
+    }
+  }
+}
+
+// Mobile responsiveness
+@include mobile {
+  .vehicle-info {
+    position: fixed;
+    top: auto;
+    bottom: calc(#{$control-panel-height} + #{$spacing-md});
+    left: $spacing-md;
+    right: $spacing-md;
+    width: auto;
+    max-height: 40vh;
+    padding: $spacing-md;
+    
+    &__header {
+      margin-bottom: $spacing-md;
+      padding-bottom: $spacing-sm;
+    }
+    
+    &__vehicle {
+      gap: $spacing-sm;
+    }
+    
+    &__vehicle-icon {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+    
+    &__vehicle-plate {
+      font-size: $font-size-base;
+    }
+    
+    &__details {
+      gap: $spacing-md;
+    }
+    
+    &__section {
+      padding: $spacing-sm;
+    }
+    
+    &__field {
+      gap: $spacing-xs;
+      margin-bottom: $spacing-xs;
+    }
+    
+    &__field-value {
+      font-size: $font-size-xs;
+      
+      &--address {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@include tablet {
+  .vehicle-info {
+    width: 280px;
+    
+    &__field {
+      flex-wrap: wrap;
+    }
+    
+    &__field-value {
+      &--address {
+        width: 100%;
+        margin-top: $spacing-xs;
+      }
+    }
+  }
+}
+
+// Animation for real-time updates
+.vehicle-info__field-value {
+  transition: all $transition-fast;
+  
+  &.updating {
+    background: rgba($accent-color, 0.2);
+    border-radius: $radius-sm;
+    padding: 2px 4px;
+  }
+}
+
+// Pulsing animation for status dot
+.vehicle-info__status-dot {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    opacity: 0.3;
+    animation: statusPulse 2s infinite;
+  }
+}
+
+@keyframes statusPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}

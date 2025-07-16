@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { MapContainer as LeafletMap, TileLayer, Polyline, useMap } from 'react-leaflet';
 import { Map as LeafletMapType } from 'leaflet';
-import { getBoundsFromPoints} from '../../utils/geoUtils';
-import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from '../../data/mockCourses';
 import type { MapContainerProps } from '../../types';
+import { getBoundsFromPoints } from '../../utils/geoUtils';
+import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from '../../data/mockCourses';
+import VehicleSprite from '../VehicleSprite';
 import 'leaflet/dist/leaflet.css';
 import './MapContainer.scss';
 
@@ -35,12 +36,14 @@ const MapUpdater: React.FC<MapUpdaterProps> = ({ selectedCourse, currentPoint })
 };
 
 const MapContainerComponent: React.FC<MapContainerProps> = ({
-    selectedCourse,
-    currentPoint,
+  selectedCourse,
+  currentPoint,
+  vehicle,
+  animationState,
 }) => {
   const mapRef = useRef<LeafletMapType | null>(null);
 
-    const getRouteColor = () => {
+  const getRouteColor = () => {
     if (!selectedCourse) return '#3388ff';
     
     const colors = ['#e74c3c', '#f39c12', '#2ecc71', '#9b59b6', '#1abc9c'];
@@ -48,12 +51,27 @@ const MapContainerComponent: React.FC<MapContainerProps> = ({
     return colors[index % colors.length] || '#3388ff';
   };
 
-    const getRoutePoints = (): Array<[number, number]> => {
+  const getRoutePoints = (): Array<[number, number]> => {
     if (!selectedCourse) return [];
-    
-    // Usar a direção já calculada no hook de animação
-    // que considera a interpolação e movimento atual
     return selectedCourse.points.map(point => [point.latitude, point.longitude]);
+  };
+
+  const getVehiclePosition = (): [number, number] => {
+    if (currentPoint) {
+      return [currentPoint.latitude, currentPoint.longitude];
+    }
+    if (selectedCourse && selectedCourse.points.length > 0) {
+      const firstPoint = selectedCourse.points[0];
+      return [firstPoint.latitude, firstPoint.longitude];
+    }
+    return DEFAULT_MAP_CENTER;
+  };
+
+  const getVehicleDirection = (): number => {
+    if (!currentPoint) {
+      return 0;
+    }
+    return currentPoint.direction || 0;
   };
 
   return (
@@ -72,7 +90,7 @@ const MapContainerComponent: React.FC<MapContainerProps> = ({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-
+        
         {selectedCourse && (
           <Polyline
             positions={getRoutePoints()}
@@ -85,6 +103,13 @@ const MapContainerComponent: React.FC<MapContainerProps> = ({
             }}
           />
         )}
+
+        <VehicleSprite
+          position={getVehiclePosition()}
+          direction={getVehicleDirection()}
+          color={vehicle.color}
+          isMoving={animationState.isPlaying}
+        />
 
         <MapUpdater
           selectedCourse={selectedCourse}

@@ -1,0 +1,126 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use 'sass:color';
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: $font-family-sans;
+  background: $bg-secondary;
+  
+  &__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $header-height;
+    background: linear-gradient(135deg, $primary-color, color.scale($primary-color, $lightness: -10%));
+    color: $text-inverse;
+    z-index: 1001;
+    box-shadow: $shadow-lg;
+    @include flex-center;
+  }
+  
+  &__header-content {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 $spacing-lg;
+    text-align: center;
+  }
+  
+  &__title {
+    @include heading('xl');
+    color: $text-inverse;
+    margin-bottom: $spacing-xs;
+    font-weight: $font-weight-bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  &__description {
+    @include text('sm');
+    color: rgba($text-inverse, 0.9);
+    margin: 0;
+    font-weight: $font-weight-normal;
+  }
+  
+  &__main {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding-top: $header-height;
+  }
+  
+  &__loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($bg-dark, 0.8);
+    @include flex-center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+  }
+  
+  &__loading-content {
+    @include card;
+    @include flex-center;
+    @include flex-column;
+    gap: $spacing-lg;
+    text-align: center;
+    max-width: 300px;
+  }
+  
+  &__loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid $border-light;
+    border-top: 3px solid $primary-color;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+// Mobile responsiveness
+@include mobile {
+  .app {
+    &__header {
+      height: 56px;
+      padding: 0 $spacing-md;
+    }
+    
+    &__header-content {
+      padding: 0;
+    }
+    
+    &__title {
+      font-size: $font-size-lg;
+      margin-bottom: 2px;
+    }
+    
+    &__description {
+      font-size: $font-size-xs;
+    }
+    
+    &__main {
+      padding-top: 56px;
+    }
+  }
+}
+
+@include tablet {
+  .app {
+    &__header {
+      height: 60px;
+    }
+    
+    &__main {
+      padding-top: 60px;
+    }
+    
+    &__title {
+      font-size: $font-size-xl;
+    }
+  }
+}

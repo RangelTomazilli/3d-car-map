@@ -74,6 +74,32 @@
     z-index: 1000;
     backdrop-filter: blur(4px);
   }
+  
+  &__message {
+    @include card;
+    text-align: center;
+    max-width: 400px;
+    margin: $spacing-lg;
+    
+    h3 {
+      @include heading('lg');
+      color: $text-primary;
+      margin-bottom: $spacing-md;
+    }
+    
+    p {
+      @include text('sm');
+      color: $text-secondary;
+    }
+  }
+}
+
+// Route polyline styles
+:global(.route-polyline) {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  animation: dashMove 2s linear infinite;
 }
 
 @keyframes dashMove {
@@ -82,5 +108,39 @@
   }
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+// Mobile responsiveness
+@include mobile {
+  .map-container {
+    height: calc(100vh - #{$header-height} - #{$control-panel-height});
+    
+    &__map {
+      .leaflet-control-zoom {
+        margin: $spacing-md;
+        
+        a {
+          width: 32px;
+          height: 32px;
+          line-height: 30px;
+          font-size: 16px;
+        }
+      }
+    }
+    
+    &__message {
+      max-width: 300px;
+      margin: $spacing-md;
+      padding: $spacing-md;
+      
+      h3 {
+        font-size: $font-size-lg;
+      }
+      
+      p {
+        font-size: $font-size-xs;
+      }
+    }
   }
 }

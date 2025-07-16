@@ -1,0 +1,42 @@
+{
+  "app": {
+    "title": "3D Vehicle Tracking",
+    "description": "Real-time GPS monitoring system"
+  },
+  "vehicle": {
+    "plate": "Plate",
+    "speed": "Speed",
+    "direction": "Direction",
+    "position": "Position",
+    "status": "Status"
+  },
+  "controls": {
+    "play": "Play",
+    "pause": "Pause",
+    "stop": "Stop",
+    "speed": "Speed",
+    "course": "Course",
+    "selectCourse": "Select a course"
+  },
+  "courses": {
+    "course1": "Course 1 - Guarujá Downtown",
+    "course2": "Course 2 - Pitangueiras Beach",
+    "course3": "Course 3 - Santos - Port Area",
+    "course4": "Course 4 - Express Highway",
+    "course5": "Course 5 - Full Circuit"
+  },
+  "info": {
+    "totalPoints": "Total Points",
+    "currentPoint": "Current Point",
+    "duration": "Duration",
+    "distance": "Distance",
+    "averageSpeed": "Average Speed"
+  },
+  "units": {
+    "kmh": "km/h",
+    "km": "km",
+    "degrees": "°",
+    "minutes": "min",
+    "seconds": "s"
+  }
+}
