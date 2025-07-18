@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { MapContainer as LeafletMap, TileLayer, Polyline, useMap } from 'react-leaflet';
 import { Map as LeafletMapType } from 'leaflet';
 import type { MapContainerProps } from '../../types';
-import { getBoundsFromPoints, calculateBearing } from '../../utils/geoUtils';
+import { getBoundsFromPoints } from '../../utils/geoUtils';
 import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from '../../data/mockCourses';
 import VehicleSprite from '../VehicleSprite';
 import 'leaflet/dist/leaflet.css';

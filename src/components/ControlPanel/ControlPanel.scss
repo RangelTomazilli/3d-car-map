@@ -29,6 +29,7 @@
   &__section {
     @include flex-column;
     gap: $spacing-sm;
+    flex: 1;
     
     // Mobile: Horizontal layout for sections
     @include mobile {
@@ -37,7 +38,6 @@
       align-items: center;
       gap: $spacing-sm;
     }
-    flex: 1;
   }
   
   &__buttons {

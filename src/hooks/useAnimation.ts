@@ -98,7 +98,6 @@ export const useAnimation = (options: UseAnimationOptions = {}) => {
           const [lat, lng] = interpolatePosition(currentPoint, nextPoint, newProgress);
           
           // Calcular direção baseada no movimento atual (sempre da posição atual para a próxima)
-          const currentPosition = { latitude: lat, longitude: lng } as GPSPoint;
           const direction = calculateBearing(currentPoint, nextPoint);
           
           const interpolatedPoint: GPSPoint = {
