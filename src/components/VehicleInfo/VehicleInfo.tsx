@@ -6,10 +6,15 @@ import { formatDateTime } from '../../utils/dateUtils';
 import LanguageSelector from '../LanguageSelector';
 import './VehicleInfo.scss';
 
-const VehicleInfo: React.FC<VehicleInfoProps> = ({
+interface VehicleInfoPropsWithClassName extends VehicleInfoProps {
+  className?: string;
+}
+
+const VehicleInfo: React.FC<VehicleInfoPropsWithClassName> = ({
   vehicle,
   currentPoint,
   animationState,
+  className = '',
 }) => {
   const { t, i18n } = useTranslation();
 
@@ -34,7 +39,7 @@ const VehicleInfo: React.FC<VehicleInfoProps> = ({
 
 
   return (
-    <div className="vehicle-info">
+    <div className={`vehicle-info ${className}`}>
       <div className="vehicle-info__header">
         <div className="vehicle-info__vehicle">
           <div className="vehicle-info__vehicle-details">

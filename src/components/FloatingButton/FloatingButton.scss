@@ -1,0 +1,64 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.floating-button {
+  @include button-base;
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-full;
+  background: $bg-primary;
+  border: 1px solid $border-light;
+  box-shadow: $shadow-lg;
+  z-index: 1001;
+  transition: all $transition-base;
+  
+  // Hide on desktop
+  display: none;
+  
+  // Show only on mobile
+  @include mobile {
+    display: flex;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-xl;
+    background: $bg-secondary;
+  }
+  
+  &--active {
+    background: $primary-color;
+    color: $text-inverse;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 4px rgba($primary-color, 0.3);
+  }
+  
+  // Positioning - Grouped together on the right side
+  &--top-left {
+    top: calc(56px + #{$spacing-md}); // mobile header height + spacing
+    right: $spacing-md;
+  }
+  
+  &--top-right {
+    top: calc(56px + #{$spacing-md} + 48px + #{$spacing-sm}); // Below first button
+    right: $spacing-md;
+  }
+  
+  &--bottom-left {
+    bottom: calc(70px + #{$spacing-md}); // mobile control panel height + spacing
+    left: $spacing-md;
+  }
+  
+  &--bottom-right {
+    bottom: calc(70px + #{$spacing-md});
+    right: $spacing-md;
+  }
+  
+  // Icon styling
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+}

@@ -17,9 +17,26 @@
   @include flex-between;
   gap: $spacing-lg;
   
+  // Mobile: Reduce height and adjust layout
+  @include mobile {
+    height: 70px;
+    padding: $spacing-sm $spacing-md;
+    gap: $spacing-sm;
+    @include flex-between;
+    align-items: center;
+  }
+  
   &__section {
     @include flex-column;
     gap: $spacing-sm;
+    
+    // Mobile: Horizontal layout for sections
+    @include mobile {
+      @include flex-between;
+      flex-direction: row;
+      align-items: center;
+      gap: $spacing-sm;
+    }
     flex: 1;
   }
   
@@ -27,6 +44,11 @@
     display: flex;
     gap: $spacing-sm;
     align-items: center;
+    
+    // Mobile: Smaller buttons
+    @include mobile {
+      gap: $spacing-xs;
+    }
   }
   
   &__button {
@@ -36,6 +58,17 @@
     border-radius: 50%;
     @include flex-center;
     transition: all $transition-base;
+    
+    // Mobile: Smaller buttons
+    @include mobile {
+      width: 40px;
+      height: 40px;
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
     
     &--play {
       background: linear-gradient(135deg, $success-color, color.scale($success-color, $lightness: -10%));

@@ -5,10 +5,15 @@ import { formatDuration } from '../../utils/dateUtils';
 import { getDurationBetweenDates } from '../../utils/dateUtils';
 import './CourseSelector.scss';
 
-const CourseSelector: React.FC<CourseSelectorProps> = ({
+interface CourseSelectorPropsWithClassName extends CourseSelectorProps {
+  className?: string;
+}
+
+const CourseSelector: React.FC<CourseSelectorPropsWithClassName> = ({
   courses,
   selectedCourse,
   onCourseSelect,
+  className = '',
 }) => {
   const { t, i18n } = useTranslation();
 
@@ -49,7 +54,7 @@ const CourseSelector: React.FC<CourseSelectorProps> = ({
   };
 
   return (
-    <div className="course-selector">
+    <div className={`course-selector ${className}`}>
       <div className="course-selector__header">
         <h3 className="course-selector__title">
           {t('controls.selectCourse')}

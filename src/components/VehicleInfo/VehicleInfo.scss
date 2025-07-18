@@ -15,6 +15,11 @@
   @include slide-in-up;
   animation-delay: 0.1s;
   
+  // Mobile: Hide completely, only show in overlay
+  @include mobile {
+    display: none;
+  }
+  
   &__header {
     @include flex-between;
     align-items: flex-start;
