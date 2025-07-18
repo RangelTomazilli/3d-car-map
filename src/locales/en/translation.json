@@ -18,13 +18,6 @@
     "course": "Course",
     "selectCourse": "Select a course"
   },
-  "courses": {
-    "course1": "Course 1 - Guarujá Downtown",
-    "course2": "Course 2 - Pitangueiras Beach",
-    "course3": "Course 3 - Santos - Port Area",
-    "course4": "Course 4 - Express Highway",
-    "course5": "Course 5 - Full Circuit"
-  },
   "info": {
     "totalPoints": "Total Points",
     "currentPoint": "Current Point",
@@ -38,5 +31,21 @@
     "degrees": "°",
     "minutes": "min",
     "seconds": "s"
+  },
+  "status": {
+    "moving": "Moving",
+    "paused": "Paused",
+    "stopped": "Stopped",
+    "playing": "Playing",
+    "label": "Status",
+    "timestamp": "Timestamp"
+  },
+  "messages": {
+    "selectCourseToView": "Select a course to view vehicle information",
+    "courseAvailable": "course available",
+    "coursesAvailable": "courses available",
+    "selectCourseToStart": "Select a course to start",
+    "useControlPanel": "Use the control panel to choose one of the available courses",
+    "loadingCourses": "Loading courses..."
   }
 }

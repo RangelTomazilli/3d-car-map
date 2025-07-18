@@ -109,11 +109,11 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 
         <div className="control-panel__status">
           <div className="control-panel__status-item">
-            <span className="control-panel__status-label">Status:</span>
+            <span className="control-panel__status-label">{t('status.label')}:</span>
             <span className={`control-panel__status-value control-panel__status-value--${
               animationState.isPlaying ? 'playing' : animationState.isPaused ? 'paused' : 'stopped'
             }`}>
-              {animationState.isPlaying ? 'Reproduzindo' : animationState.isPaused ? 'Pausado' : 'Parado'}
+              {animationState.isPlaying ? t('status.playing') : animationState.isPaused ? t('status.paused') : t('status.stopped')}
             </span>
           </div>
         </div>

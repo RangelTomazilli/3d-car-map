@@ -18,13 +18,6 @@ export interface TranslationKeys {
     course: string;
     selectCourse: string;
   };
-  courses: {
-    course1: string;
-    course2: string;
-    course3: string;
-    course4: string;
-    course5: string;
-  };
   info: {
     totalPoints: string;
     currentPoint: string;
@@ -38,6 +31,22 @@ export interface TranslationKeys {
     degrees: string;
     minutes: string;
     seconds: string;
+  };
+  status: {
+    moving: string;
+    paused: string;
+    stopped: string;
+    playing: string;
+    label: string;
+    timestamp: string;
+  };
+  messages: {
+    selectCourseToView: string;
+    courseAvailable: string;
+    coursesAvailable: string;
+    selectCourseToStart: string;
+    useControlPanel: string;
+    loadingCourses: string;
   };
 }
 

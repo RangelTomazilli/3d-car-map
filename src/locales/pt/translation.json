@@ -18,13 +18,6 @@
     "course": "Trajeto",
     "selectCourse": "Selecione um trajeto"
   },
-  "courses": {
-    "course1": "Trajeto 1 - Centro de Guarujá",
-    "course2": "Trajeto 2 - Praia de Pitangueiras",
-    "course3": "Trajeto 3 - Santos - Zona Portuária",
-    "course4": "Trajeto 4 - Via Expressa",
-    "course5": "Trajeto 5 - Circuito Completo"
-  },
   "info": {
     "totalPoints": "Total de Pontos",
     "currentPoint": "Ponto Atual",
@@ -38,5 +31,21 @@
     "degrees": "°",
     "minutes": "min",
     "seconds": "s"
+  },
+  "status": {
+    "moving": "Em movimento",
+    "paused": "Pausado",
+    "stopped": "Parado",
+    "playing": "Reproduzindo",
+    "label": "Status",
+    "timestamp": "Timestamp"
+  },
+  "messages": {
+    "selectCourseToView": "Selecione um trajeto para ver as informações do veículo",
+    "courseAvailable": "trajeto disponível",
+    "coursesAvailable": "trajetos disponíveis",
+    "selectCourseToStart": "Selecione um trajeto para começar",
+    "useControlPanel": "Use o painel de controle para escolher um dos trajetos disponíveis",
+    "loadingCourses": "Carregando trajetos..."
   }
 }

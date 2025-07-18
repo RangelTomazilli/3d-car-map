@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MapContainer as LeafletMap, TileLayer, Polyline, useMap } from 'react-leaflet';
 import { Map as LeafletMapType } from 'leaflet';
 import type { MapContainerProps } from '../../types';
-import { getBoundsFromPoints } from '../../utils/geoUtils';
+import { getBoundsFromPoints, calculateBearing } from '../../utils/geoUtils';
 import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from '../../data/mockCourses';
 import VehicleSprite from '../VehicleSprite';
 import 'leaflet/dist/leaflet.css';
@@ -41,6 +42,7 @@ const MapContainerComponent: React.FC<MapContainerProps> = ({
   vehicle,
   animationState,
 }) => {
+  const { t } = useTranslation();
   const mapRef = useRef<LeafletMapType | null>(null);
 
   const getRouteColor = () => {
@@ -120,8 +122,8 @@ const MapContainerComponent: React.FC<MapContainerProps> = ({
       {!selectedCourse && (
         <div className="map-container__overlay">
           <div className="map-container__message">
-            <h3>Selecione um trajeto para começar</h3>
-            <p>Use o painel de controle para escolher um dos trajetos disponíveis</p>
+            <h3>{t('messages.selectCourseToStart')}</h3>
+            <p>{t('messages.useControlPanel')}</p>
           </div>
         </div>
       )}

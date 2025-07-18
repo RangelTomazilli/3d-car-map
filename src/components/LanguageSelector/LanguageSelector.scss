@@ -1,0 +1,135 @@
+@use '../../styles/abstracts/variables' as *;
+
+.language-selector {
+  position: relative;
+  display: inline-block;
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+    background: $bg-primary;
+    border: 1px solid $border-light;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: all $transition-base;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $text-primary;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      background: $bg-secondary;
+      border-color: $border-medium;
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &__flag {
+    font-size: $font-size-base;
+    line-height: 1;
+  }
+
+  &__code {
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.5px;
+  }
+
+  &__chevron {
+    transition: transform $transition-base;
+    opacity: 0.7;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: $spacing-xs;
+    background: $bg-primary;
+    border: 1px solid $border-light;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
+    overflow: hidden;
+    z-index: $z-dropdown;
+    min-width: 180px;
+    animation: language-selector-dropdown-enter $transition-base ease;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    width: 100%;
+    padding: $spacing-md $spacing-lg;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color $transition-base;
+    color: $text-primary;
+    text-align: left;
+
+    &:hover {
+      background: rgba($primary-color, 0.1);
+    }
+
+    &--active {
+      background: rgba($primary-color, 0.15);
+      color: $primary-color;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $border-light;
+    }
+  }
+
+  &__option-flag {
+    font-size: $font-size-lg;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  &__option-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__option-native {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    line-height: 1.2;
+  }
+
+  &__option-name {
+    font-size: $font-size-xs;
+    color: $text-secondary;
+    line-height: 1.2;
+  }
+
+  &__check {
+    color: $success-color;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes language-selector-dropdown-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

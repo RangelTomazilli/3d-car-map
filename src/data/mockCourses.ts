@@ -1,4 +1,5 @@
 import type { Course, GPSPoint, Vehicle } from '../types';
+
 export const mockVehicle: Vehicle = {
   id: 'vehicle-001',
   plate: 'BPZ4295',

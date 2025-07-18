@@ -1,8 +1,8 @@
 import { format, formatDistanceToNow, differenceInSeconds } from 'date-fns';
-import { ptBR, enUS } from 'date-fns/locale';
+import { ptBR, enUS, es } from 'date-fns/locale';
 
-export const formatDateTime = (date: Date, language: 'pt' | 'en' = 'pt'): string => {
-  const locale = language === 'pt' ? ptBR : enUS;
+export const formatDateTime = (date: Date, language: 'pt' | 'en' | 'es' = 'pt'): string => {
+  const locale = language === 'pt' ? ptBR : language === 'es' ? es : enUS;
   return format(date, 'dd/MM/yyyy HH:mm:ss', { locale });
 };
 
@@ -10,12 +10,20 @@ export const formatTime = (date: Date): string => {
   return format(date, 'HH:mm:ss');
 };
 
-export const formatDuration = (seconds: number, language: 'pt' | 'en' = 'pt'): string => {
+export const formatDuration = (seconds: number, language: 'pt' | 'en' | 'es' = 'pt'): string => {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const remainingSeconds = seconds % 60;
   
   if (language === 'pt') {
+    if (hours > 0) {
+      return `${hours}h ${minutes}m ${remainingSeconds}s`;
+    }
+    if (minutes > 0) {
+      return `${minutes}m ${remainingSeconds}s`;
+    }
+    return `${remainingSeconds}s`;
+  } else if (language === 'es') {
     if (hours > 0) {
       return `${hours}h ${minutes}m ${remainingSeconds}s`;
     }
@@ -34,8 +42,8 @@ export const formatDuration = (seconds: number, language: 'pt' | 'en' = 'pt'): s
   }
 };
 
-export const formatRelativeTime = (date: Date, language: 'pt' | 'en' = 'pt'): string => {
-  const locale = language === 'pt' ? ptBR : enUS;
+export const formatRelativeTime = (date: Date, language: 'pt' | 'en' | 'es' = 'pt'): string => {
+  const locale = language === 'pt' ? ptBR : language === 'es' ? es : enUS;
   return formatDistanceToNow(date, { addSuffix: true, locale });
 };
 

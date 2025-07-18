@@ -19,7 +19,7 @@ const CourseSelector: React.FC<CourseSelectorProps> = ({
   const getCourseStats = (course: CourseSelectorProps['courses'][0]) => {
     const duration = getDurationBetweenDates(course.startTime, course.endTime);
     return {
-      duration: formatDuration(duration, i18n.language as 'pt' | 'en'),
+      duration: formatDuration(duration, i18n.language as 'pt' | 'en' | 'es'),
       points: course.points.length,
       distance: course.totalDistance.toFixed(1),
       avgSpeed: course.averageSpeed.toFixed(0),
@@ -55,7 +55,7 @@ const CourseSelector: React.FC<CourseSelectorProps> = ({
           {t('controls.selectCourse')}
         </h3>
         <div className="course-selector__subtitle">
-          {courses.length} {courses.length === 1 ? 'trajeto disponível' : 'trajetos disponíveis'}
+          {courses.length} {courses.length === 1 ? t('messages.courseAvailable') : t('messages.coursesAvailable')}
         </div>
       </div>
 
@@ -82,7 +82,7 @@ const CourseSelector: React.FC<CourseSelectorProps> = ({
                 
                 <div className="course-selector__item-info">
                   <h4 className="course-selector__item-title">
-                    {t(`courses.${course.id.replace('-', '')}`)}
+                    {course.name}
                   </h4>
                   <p className="course-selector__item-description">
                     {course.description}

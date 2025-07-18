@@ -131,7 +131,7 @@ const App: React.FC = () => {
         <div className="app__loading">
           <div className="app__loading-content">
             <div className="app__loading-spinner"></div>
-            <p>Carregando trajetos...</p>
+            <p>{t('messages.loadingCourses')}</p>
           </div>
         </div>
       )}

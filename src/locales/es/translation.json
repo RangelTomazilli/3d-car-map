@@ -1,0 +1,51 @@
+{
+  "app": {
+    "title": "Seguimiento Vehicular 3D",
+    "description": "Sistema de monitoreo GPS en tiempo real"
+  },
+  "vehicle": {
+    "plate": "Placa",
+    "speed": "Velocidad",
+    "direction": "Dirección",
+    "position": "Posición",
+    "status": "Estado"
+  },
+  "controls": {
+    "play": "Reproducir",
+    "pause": "Pausar",
+    "stop": "Detener",
+    "speed": "Velocidad",
+    "course": "Trayecto",
+    "selectCourse": "Seleccione un trayecto"
+  },
+  "info": {
+    "totalPoints": "Total de Puntos",
+    "currentPoint": "Punto Actual",
+    "duration": "Duración",
+    "distance": "Distancia",
+    "averageSpeed": "Velocidad Promedio"
+  },
+  "units": {
+    "kmh": "km/h",
+    "km": "km",
+    "degrees": "°",
+    "minutes": "min",
+    "seconds": "s"
+  },
+  "status": {
+    "moving": "En movimiento",
+    "paused": "Pausado",
+    "stopped": "Detenido",
+    "playing": "Reproduciendo",
+    "label": "Estado",
+    "timestamp": "Marca de tiempo"
+  },
+  "messages": {
+    "selectCourseToView": "Seleccione un trayecto para ver la información del vehículo",
+    "courseAvailable": "trayecto disponible",
+    "coursesAvailable": "trayectos disponibles",
+    "selectCourseToStart": "Seleccione un trayecto para comenzar",
+    "useControlPanel": "Use el panel de control para elegir uno de los trayectos disponibles",
+    "loadingCourses": "Cargando trayectos..."
+  }
+}

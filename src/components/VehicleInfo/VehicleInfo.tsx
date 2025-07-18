@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { VehicleInfoProps } from '../../types';
 import { formatCoordinates, formatSpeed, formatDirection } from '../../utils/geoUtils';
 import { formatDateTime } from '../../utils/dateUtils';
+import LanguageSelector from '../LanguageSelector';
 import './VehicleInfo.scss';
 
 const VehicleInfo: React.FC<VehicleInfoProps> = ({
@@ -19,9 +20,9 @@ const VehicleInfo: React.FC<VehicleInfoProps> = ({
   };
 
   const getStatusText = () => {
-    if (animationState.isPlaying) return 'Em movimento';
-    if (animationState.isPaused) return 'Pausado';
-    return 'Parado';
+    if (animationState.isPlaying) return t('status.moving');
+    if (animationState.isPaused) return t('status.paused');
+    return t('status.stopped');
   };
 
   const getProgressPercentage = (): number => {
@@ -31,21 +32,11 @@ const VehicleInfo: React.FC<VehicleInfoProps> = ({
     return (animationState.currentPointIndex / (animationState.currentCourse.points.length - 1)) * 100;
   };
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'pt' ? 'en' : 'pt';
-    i18n.changeLanguage(newLang);
-  };
 
   return (
     <div className="vehicle-info">
       <div className="vehicle-info__header">
         <div className="vehicle-info__vehicle">
-          <div 
-            className="vehicle-info__vehicle-icon"
-            style={{ backgroundColor: vehicle.color }}
-          >
-            🚗
-          </div>
           <div className="vehicle-info__vehicle-details">
             <h3 className="vehicle-info__vehicle-plate">{vehicle.plate}</h3>
             <p className="vehicle-info__vehicle-model">
@@ -54,13 +45,7 @@ const VehicleInfo: React.FC<VehicleInfoProps> = ({
           </div>
         </div>
 
-        <button 
-          className="vehicle-info__language-toggle"
-          onClick={toggleLanguage}
-          title={`Switch to ${i18n.language === 'pt' ? 'English' : 'Português'}`}
-        >
-          {i18n.language === 'pt' ? '🇺🇸 EN' : '🇧🇷 PT'}
-        </button>
+        <LanguageSelector />
       </div>
 
       <div className="vehicle-info__status">
@@ -133,12 +118,12 @@ const VehicleInfo: React.FC<VehicleInfoProps> = ({
 
           <div className="vehicle-info__section">
             <h4 className="vehicle-info__section-title">
-              Timestamp
+              {t('status.timestamp')}
             </h4>
             <div className="vehicle-info__field">
               <span className="vehicle-info__field-icon">⏰</span>
               <span className="vehicle-info__field-value vehicle-info__field-value--timestamp">
-                {formatDateTime(currentPoint.timestamp, i18n.language as 'pt' | 'en')}
+                {formatDateTime(currentPoint.timestamp, i18n.language as 'pt' | 'en' | 'es')}
               </span>
             </div>
           </div>
@@ -151,7 +136,7 @@ const VehicleInfo: React.FC<VehicleInfoProps> = ({
               <div className="vehicle-info__field">
                 <span className="vehicle-info__field-icon">🛣️</span>
                 <span className="vehicle-info__field-value">
-                  {t(`courses.${animationState.currentCourse.id.replace('-', '')}`)}
+                  {animationState.currentCourse.name}
                 </span>
               </div>
               <div className="vehicle-info__field">
@@ -163,7 +148,7 @@ const VehicleInfo: React.FC<VehicleInfoProps> = ({
               </div>
               <div className="vehicle-info__field">
                 <span className="vehicle-info__field-icon">⚡</span>
-                <span className="vehicle-info__field-label">Velocidade:</span>
+                <span className="vehicle-info__field-label">{t('vehicle.speed')}:</span>
                 <span className="vehicle-info__field-value">
                   {animationState.playbackSpeed}x
                 </span>
@@ -177,7 +162,7 @@ const VehicleInfo: React.FC<VehicleInfoProps> = ({
         <div className="vehicle-info__empty">
           <div className="vehicle-info__empty-icon">📍</div>
           <p className="vehicle-info__empty-text">
-            Selecione um trajeto para ver as informações do veículo
+            {t('messages.selectCourseToView')}
           </p>
         </div>
       )}
